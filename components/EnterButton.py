@@ -9,21 +9,21 @@ class EnterButton(QPushButton):
         self.clicked.connect(self.displayMessage)
         self.clicked.connect(self.handleEnter)
 
-        # My style:
+        # Test later:
         # self.setStyleSheet("""
         #     QPushButton {
-        #         background-color: #4CAF50;  /* Green background */
-        #         color: white;              /* White text */
+        #         background-color: #4CAF50;
+        #         color: white;              
         #         font-size: 16px;
         #         padding: 10px;
         #         border: none;
         #         border-radius: 5px;
         #     }
         #     QPushButton:hover {
-        #         background-color: #45a049;  /* Darker green when hovering */
+        #         background-color: #45a049;  
         #     }
         #     QPushButton:pressed {
-        #         background-color: #3e8e41;  /* Even darker when pressed */
+        #         background-color: #3e8e41; 
         #     }
         # """)
 
@@ -43,7 +43,6 @@ if __name__ == '__main__':
     window.setWindowTitle("GeneralButton Demo")
     layout = QVBoxLayout(window)
     
-    # Create an instance of GeneralButton with your custom text
     btn = EnterButton("Enter")
     layout.addWidget(btn)
     

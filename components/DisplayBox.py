@@ -2,7 +2,6 @@ from PyQt6.QtWidgets import QApplication, QTextEdit
 from PyQt6.QtGui import QFont
 import sys
 
-# Should I consider using a QTextEdit?
 class DisplayBox(QTextEdit):
     def __init__(self):
         super().__init__()

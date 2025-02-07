@@ -19,7 +19,6 @@ if __name__ == '__main__':
     window.setWindowTitle("GeneralButton Demo")
     layout = QVBoxLayout(window)
     
-    # Create an instance of GeneralButton with your custom text
     btn = ClearButton("Clear")
     layout.addWidget(btn)
     
