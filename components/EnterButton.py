@@ -9,6 +9,24 @@ class EnterButton(QPushButton):
         self.clicked.connect(self.displayMessage)
         self.clicked.connect(self.handleEnter)
 
+        # My style:
+        # self.setStyleSheet("""
+        #     QPushButton {
+        #         background-color: #4CAF50;  /* Green background */
+        #         color: white;              /* White text */
+        #         font-size: 16px;
+        #         padding: 10px;
+        #         border: none;
+        #         border-radius: 5px;
+        #     }
+        #     QPushButton:hover {
+        #         background-color: #45a049;  /* Darker green when hovering */
+        #     }
+        #     QPushButton:pressed {
+        #         background-color: #3e8e41;  /* Even darker when pressed */
+        #     }
+        # """)
+
 
     def displayMessage(self):
         print("Enter button has been pressed")
