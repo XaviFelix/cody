@@ -11,6 +11,12 @@ class Setup(QWidget):
         vLayout.addWidget(self.comboBox)
         self.setLayout(vLayout)
 
+    # creates a list of radio buttons that will affect
+    # how the ai will ask questions to the user
+
+    # could create a general init for various languages
+    # just need to pass the name of the pl as an argument
+    # def initJavaPrinciples(self):
 
 
 if __name__ == '__main__':
