@@ -7,6 +7,9 @@ class GroupCheckBoxes(QGroupBox):
         self.setCheckable(True)
 
         self.layout = QVBoxLayout()
+        self.layout.setSpacing(1)
+        self.layout.setContentsMargins(5, 5, 5, 5)
+
         self.check_boxes = []
         for name in listOfCheckBoxNames:
             checkbox = QCheckBox(name)
