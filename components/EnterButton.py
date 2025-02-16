@@ -1,12 +1,14 @@
 from PyQt6.QtWidgets import QApplication, QWidget, QVBoxLayout, QPushButton
+from .InputBox import InputBox
 import sys
 
 class EnterButton(QPushButton):
-    def __init__(self, label: str, parent=None):
+    def __init__(self, label: str, inputBox: InputBox, parent=None):
         super().__init__(label, parent)
 
+        self.input_field = inputBox
+
         self.setToolTip("press enter")
-        self.clicked.connect(self.displayMessage)
         self.clicked.connect(self.handleEnter)
 
         # Test later:
@@ -27,25 +29,7 @@ class EnterButton(QPushButton):
         #     }
         # """)
 
-
-    def displayMessage(self):
-        print("Enter button has been pressed")
-
     def handleEnter(self):
-        print("random")
-        # Here i need to get the data from the QLineEdit object
-
-
-# Just to test the individual object:
-if __name__ == '__main__':
-    app = QApplication(sys.argv)
-    window = QWidget()
-    window.setWindowTitle("GeneralButton Demo")
-    layout = QVBoxLayout(window)
-    
-    btn = EnterButton("Enter")
-    layout.addWidget(btn)
-    
-    window.setLayout(layout)
-    window.show()
-    sys.exit(app.exec())
+        text = self.input_field.toPlainText()
+        print("This is the text:")
+        print(text)

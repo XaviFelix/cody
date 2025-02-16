@@ -124,6 +124,41 @@ class Setup(QWidget):
 
     def createRustPrinciples(self):
         print("Creating Rust principles")
+        self.clearGridLayout()
+
+        basics = [
+            "Syntax and Structure", 
+            "Control Flow", 
+            "Functions", 
+            "Error Handling"
+        ]
+
+        oop = [
+            "Ownership Rules", 
+            "Borrowing & References", 
+            "Lifetimes", 
+            "Smart Pointers",
+        ]
+
+        collectionsAndDS= [
+            "Arrays & Slices", 
+            "Tuples & Structs", 
+            "Vectors & Hashmaps", 
+            "Iterators & Closures"
+        ]
+
+        features = [
+            "Concurrency & Parallelism", 
+            "Traits and Generics", 
+            "Macros & Metaprogramming", 
+            "Unsafe Rust & Low-Level Control",
+            "I/O & File Management"
+        ]
+
+        self.gridLayout.addWidget(GroupCheckBoxes(basics, "Core Rust Basics"), 1, 0)
+        self.gridLayout.addWidget(GroupCheckBoxes(oop, "Ownership, Borrowing & Lifetimes"), 1, 1)
+        self.gridLayout.addWidget(GroupCheckBoxes(collectionsAndDS, "Data Structures & Collections"), 2, 0)
+        self.gridLayout.addWidget(GroupCheckBoxes(features, "Rust Features"), 2, 1)
 
     def createCPrinciples(self):
         print("Creating C principles")

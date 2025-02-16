@@ -1,27 +1,16 @@
 from PyQt6.QtWidgets import QApplication, QWidget, QVBoxLayout, QPushButton
+from .InputBox import InputBox
 import sys
 
 class ClearButton(QPushButton):
-    def __init__(self, label: str, parent=None):
-        super().__init__(label, parent)
+    def __init__(self, label: str, inputBox: InputBox, parent=None):
+        super().__init__(label, inputBox)
+
+        self.inputBox = inputBox
 
         self.setToolTip("Clear Input")
-        self.clicked.connect(self.clearInput)
+        self.clicked.connect(self.handleClear)
 
-    def clearInput(self):
-        print("Clearing Input")
-
-
-# Just to test the individual object:
-if __name__ == '__main__':
-    app = QApplication(sys.argv)
-    window = QWidget()
-    window.setWindowTitle("GeneralButton Demo")
-    layout = QVBoxLayout(window)
-    
-    btn = ClearButton("Clear")
-    layout.addWidget(btn)
-    
-    window.setLayout(layout)
-    window.show()
-    sys.exit(app.exec())
+    def handleClear(self):
+        self.inputBox.clear()
+        
