@@ -8,29 +8,132 @@ class Setup(QWidget):
         self.comboBox = QComboBox()
         self.comboBox.addItems(["Java", "Python", "Go", "Rust", "C"])
 
-        # List of programming language topics (general),
-        #TODO: curate topics specific to PL
-        self.topics = [
-            "Syntax and Semantics", 
-            "Datatypes and Semantics", 
-            "Control Flow", 
-            "Functions and Scope"
-        ]
-        self.checkBoxes = GroupCheckBoxes(self.topics)
-        self.checkBoxes2 = GroupCheckBoxes(self.topics)
-        self.checkBoxes3 = GroupCheckBoxes(self.topics)
-        self.checkBoxes4 = GroupCheckBoxes(self.topics)
-
-        gridLayout = QGridLayout()
+        self.gridLayout = QGridLayout()
         
+        #NOTE: Need to update this everytime i create a new group of checkboxes
         # widget, row, column 
-        gridLayout.addWidget(self.comboBox, 0, 0)
-        gridLayout.addWidget(self.checkBoxes, 1, 0)
-        gridLayout.addWidget(self.checkBoxes2, 1, 1)
-        gridLayout.addWidget(self.checkBoxes3, 2, 0)
-        gridLayout.addWidget(self.checkBoxes4, 2, 1)
+        self.gridLayout.addWidget(self.comboBox, 0, 0)
 
-        self.setLayout(gridLayout)
+        # This is the default
+        self.createJavaPrinciples()
+
+        # comboBox signal
+        self.comboBox.activated.connect(self.initLanguagePrinciples)
+
+        self.setLayout(self.gridLayout)
+
+
+    def initLanguagePrinciples(self):
+        index = self.comboBox.currentIndex() 
+        currentLanguage = self.comboBox.itemText(index)
+
+        match currentLanguage:
+            case "Java":
+                self.createJavaPrinciples()
+            case "Python":
+                self.createPythonPrinciples()
+            case "Go":
+                self.createGoPrinciples()
+            case "Rust":
+                self.createRustPrinciples()
+            case "C":
+                self.createCPrinciples()
+            case _:
+                print("Something went wrong initalizing principles")
+    
+    def createPythonPrinciples(self):
+        print("Creating Python principles")
+        self.clearGridLayout()
+
+        basics = [
+            "Syntax and Structure", 
+            "Control Flow", 
+            "Methods and Functions", 
+            "Exception Handling"
+        ]
+
+        oop = [
+            "Classes and Objects", 
+            "Encapsulation", 
+            "Inheritance", 
+            "Polymorphism",
+            "Abstraction"
+        ]
+
+        collectionsAndDS= [
+            "List & Tuples", 
+            "Dictionaries & Sets", 
+            "Iterators & Generators", 
+            "Built-in Collections"
+        ]
+
+        features = [
+            "Concurrency & Multithreading", 
+            "I/O & Serialization", 
+            "Functional Programming", 
+            "Typing & Type Hints",
+            "Memory Management & Performance"
+        ]
+
+        self.gridLayout.addWidget(GroupCheckBoxes(basics, "Core Python Basics"), 1, 0)
+        self.gridLayout.addWidget(GroupCheckBoxes(oop, "OOP"), 1, 1)
+        self.gridLayout.addWidget(GroupCheckBoxes(collectionsAndDS, "DS & Collections"), 2, 0)
+        self.gridLayout.addWidget(GroupCheckBoxes(features, "Python Features"), 2, 1)
+
+    def createJavaPrinciples(self):
+        print("Creating Java principles")
+        self.clearGridLayout()
+
+        basics = [
+            "Syntax and Structure", 
+            "Control Flow", 
+            "Methods and Functions", 
+            "Exception Handling"
+        ]
+
+        oop = [
+            "Classes and Objects", 
+            "Encapsulation", 
+            "Inheritance", 
+            "Polymorphism",
+            "Abstraction"
+        ]
+
+        collectionsAndDS= [
+            "Arrays", 
+            "Collections Framework", 
+            "Common Implementations", 
+            "Iterators & Streams"
+        ]
+
+        features = [
+            "Concurrency & Multithreading", 
+            "I/O & File Handling", 
+            "Lambdas & Functional Programming", 
+            "Generics & Type Safety",
+            "JVM & Memory Management"
+        ]
+
+        self.gridLayout.addWidget(GroupCheckBoxes(basics, "Core Java Basics"), 1, 0)
+        self.gridLayout.addWidget(GroupCheckBoxes(oop, "OOP"), 1, 1)
+        self.gridLayout.addWidget(GroupCheckBoxes(collectionsAndDS, "DS & Collections"), 2, 0)
+        self.gridLayout.addWidget(GroupCheckBoxes(features, "Java Features"), 2, 1)
+
+    def createGoPrinciples(self):
+        print("Creating Go principles")
+
+    def createRustPrinciples(self):
+        print("Creating Rust principles")
+
+    def createCPrinciples(self):
+        print("Creating C principles")
+
+
+    def clearGridLayout(self):
+        for i in reversed(range(self.gridLayout.count())):
+            if i == 0:
+                break
+            self.gridLayout.itemAt(i).widget().setParent(None)
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
