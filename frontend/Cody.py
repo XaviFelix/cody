@@ -1,11 +1,10 @@
 from PyQt6.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout
-from components import ClearButton, EnterButton, InputBox, DisplayBox, CopyButton
+from components import ClearButton, EnterButton, InputBox, DisplayBox, CopyButton, PasteButton
 
 class Cody(QWidget):
     def __init__(self):
         super().__init__()
         self.createUI()
-
 
     def createUI(self):
         # vertical layout
@@ -20,7 +19,7 @@ class Cody(QWidget):
         # THey can refernce it and do their respective methods
         self.enter_button = EnterButton("Enter", self.input_field)
         self.clear_button = ClearButton("Clear", self.input_field)
-        # self.paste_button = PasteButton("Paste", self.input_field)
+        self.paste_button = PasteButton("Paste", self.input_field)
         self.copy_button = CopyButton("Copy", self.input_field)
 
         # horizontal layout 
@@ -28,6 +27,7 @@ class Cody(QWidget):
         horizontal_layout.addWidget(self.enter_button)
         horizontal_layout.addWidget(self.clear_button)
         horizontal_layout.addWidget(self.copy_button)
+        horizontal_layout.addWidget(self.paste_button)
 
         # add widgets to the main layout
         self.vertical_layout.addWidget(self.display_field)
@@ -38,19 +38,5 @@ class Cody(QWidget):
         # connect signals
         self.enter_button.clicked.connect(self.enter_button.handleEnter)
         self.clear_button.clicked.connect(self.clear_button.handleClear)
-        # self.paste_button.clicked.connect(self.paste_button.handlePaste)
+        self.paste_button.clicked.connect(self.paste_button.handlePaste)
         self.copy_button.clicked.connect(self.copy_button.handleCopy)
-
-    # def handleEnter(self):
-    #     text = self.input_field.toPlainText()
-    #     self.display_field.setText(text)
-
-    # def handleClear(self):
-    #     self.display_field.clear()
-    #     self.input_field.clear()
-    
-    # def handlePaste(self):
-    #     print("Finish this method")
-
-    # def handleCopy(self):
-    #     print("Finish this method")
