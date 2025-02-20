@@ -1,5 +1,6 @@
 import sys
 from PyQt6.QtWidgets import QApplication, QVBoxLayout, QCheckBox, QGroupBox
+from backend import promptLLM 
 
 class GroupCheckBoxes(QGroupBox):
     def __init__(self, listOfCheckBoxNames, principles): # pass a string named, principle
@@ -20,12 +21,16 @@ class GroupCheckBoxes(QGroupBox):
         self.setLayout(self.layout)
 
     #TODO These checkboxes will trigger the backend 
+    # in other words, the topic will be appened here
     def on_checkbox_state_changed(self, state):
-        selected_options = [cb.text() for cb in self.check_boxes if cb.isChecked()]
-        if selected_options:
-            print("Hello there")
-        else:
-            print("No options selected")
+        selected_options = [current.text() for current in self.check_boxes if current.isChecked()]
+        print("This is the selected options: ", selected_options)
+        promptLLM(selected_options)
+
+        # call a function from the prompt file
+        # which will use the server file to append
+        # the data from these lists into the pr
+        
 
         
 # using for testing this component
