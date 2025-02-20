@@ -42,7 +42,7 @@ while True:
             messages = messages[-MAX_HISTORY:]
         
         completion = client.chat.completions.create(
-            model="qwen/qwen-vl-plus:free",
+            model="google/gemini-2.0-flash-thinking-exp:free",
             messages=messages
         )
         print(completion.choices[0].message.content)
