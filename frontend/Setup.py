@@ -19,13 +19,23 @@ class Setup(QWidget):
 
         # comboBox signal
         self.comboBox.activated.connect(self.initLanguagePrinciples)
+        self.comboBox.activated.connect(self.handleComboSelection)
 
         self.setLayout(self.gridLayout)
+
+    def handleComboSelection(self):
+        index = self.comboBox.currentIndex()
+        currentLanguage = self.comboBox.itemText(index)
+        print("This is the current langauge: ", currentLanguage)
 
 
     def initLanguagePrinciples(self):
         index = self.comboBox.currentIndex() 
         currentLanguage = self.comboBox.itemText(index)
+
+        # That means i have to clear the prompt every time
+        # Here i want to append the current language to the
+        # actual prompt
 
         match currentLanguage:
             case "Java":
