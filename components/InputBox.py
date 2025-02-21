@@ -9,6 +9,11 @@ class InputBox(QTextEdit):
 
         self.font = QFont("Arial", 16)
         self.setFont(self.font)
+    
+    def getInput(self):
+        return self.toPlainText()
+
+
 
 
 # Demo
