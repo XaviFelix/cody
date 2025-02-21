@@ -1,5 +1,7 @@
 from PyQt6.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout
 from components import ClearButton, EnterButton, InputBox, DisplayBox, CopyButton, PasteButton
+from backend import startCody
+import threading
 
 class Cody(QWidget):
     def __init__(self):
@@ -40,3 +42,7 @@ class Cody(QWidget):
         self.clear_button.clicked.connect(self.clear_button.handleClear)
         self.paste_button.clicked.connect(self.paste_button.handlePaste)
         self.copy_button.clicked.connect(self.copy_button.handleCopy)
+
+        # Start Cody here:
+        thread =threading.Thread(target=startCody, args=(self.display_field, self.enter_button))
+        thread.start()
