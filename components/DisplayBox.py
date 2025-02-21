@@ -9,7 +9,7 @@ class DisplayBox(QTextEdit):
         self.setReadOnly(True)
         self.font = QFont("Arial", 16)
         self.setFont(self.font)
-        self.updateDisplay()
+
 
 
     def updateDisplay(self):
