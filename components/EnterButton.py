@@ -30,6 +30,10 @@ class EnterButton(QPushButton):
         # """)
 
     def handleEnter(self):
-        text = self.input_field.toPlainText()
-        print("This is the text:")
-        print(text)
+        return self.input_field.getInput()
+        
+        # This text needs to be sent to the llm
+        # as a response for the LLM (userInput from server)
+        
+        # print("This is the text:")
+        # print(text)
