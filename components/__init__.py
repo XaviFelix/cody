@@ -6,4 +6,4 @@ from .InputBox import InputBox
 from .DisplayBox import DisplayBox
 from .GroupCheckBoxes import GroupCheckBoxes
 
-__all__ = ['ClearButton', 'EnterButton', 'InputBox', 'DisplayBox', 'CopyButton', 'PasteButton'] 
+__all__ = ['ClearButton', 'EnterButton', 'InputBox', 'DisplayBox', 'CopyButton', 'PasteButton', 'GroupCheckBoxes'] 
