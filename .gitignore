@@ -6,3 +6,5 @@ notes/
 
 .env
 *.log
+
+FileLogger.py
