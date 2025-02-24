@@ -1,13 +1,28 @@
-from PyQt6.QtWidgets import QApplication, QWidget, QVBoxLayout, QPushButton
+from PyQt6.QtWidgets import QPushButton
 from .InputBox import InputBox
-import sys
+from .DisplayBox import DisplayBox
+from dotenv import load_dotenv
+from backend import callLLM
+import os
 
 class EnterButton(QPushButton):
-    def __init__(self, label: str, inputBox: InputBox, parent=None):
-        super().__init__(label, parent)
+    def __init__(self, label: str, inputBox: InputBox, displayBox: DisplayBox):
+        super().__init__(label)
+        load_dotenv()
+        self.api_key = os.getenv("OPENAI_API_KEY")
+        self.base_url = os.getenv("BASE_URL")
+        self.prime = os.getenv("PROMPT_PRIME")
 
+        # Get ref to input field and create message history
         self.input_field = inputBox
+        self.messages = [
+            {"role": "system", "content": self.prime}
+        ]
 
+        # Get ref to display field and display it
+        self.displayBox = displayBox
+
+        # set up connection
         self.setToolTip("press enter")
         self.clicked.connect(self.handleEnter)
 
@@ -30,10 +45,8 @@ class EnterButton(QPushButton):
         # """)
 
     def handleEnter(self):
-        return self.input_field.getInput()
-        
-        # This text needs to be sent to the llm
-        # as a response for the LLM (userInput from server)
-        
-        # print("This is the text:")
-        # print(text)
+        user_input = self.input_field.getInput()
+        callLLM(user_input, self.messages, self.api_key, self.base_url, self.displayBox)
+
+
+   
