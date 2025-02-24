@@ -1,13 +1,10 @@
-from PyQt6.QtWidgets import QApplication, QWidget, QVBoxLayout, QPushButton
+from PyQt6.QtWidgets import QPushButton
 from .InputBox import InputBox
-import sys
 
 class ClearButton(QPushButton):
     def __init__(self, label: str, inputBox: InputBox, parent=None):
         super().__init__(label, inputBox)
-
         self.inputBox = inputBox
-
         self.setToolTip("Clear Input")
         self.clicked.connect(self.handleClear)
 
