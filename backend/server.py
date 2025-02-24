@@ -27,15 +27,17 @@ client = openai.OpenAI(
     api_key=api_key
 )
 
+# This needs to be kept somewhere else
 messages = [
     {"role": "system", "content": prime}
 ]
-
 MAX_HISTORY = 10
 
-while True:
+# I need to pass a list to callCody(messages)
+def callCody(messages, maxHistory, InputBox):
+
     try:
-        my_input = userInput()
+        my_input = userInput() # This input comes from inputBox
         messages.append(my_input)
         
         if len(messages) > MAX_HISTORY:
@@ -51,4 +53,3 @@ while True:
         
     except Exception as e:
         print(f"An error occurred: {e}")
-        break
