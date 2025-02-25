@@ -76,12 +76,18 @@ def callLLM_test(messages, llmTester):
     llmTester.debug("Messagse after adding user input:")
     llmTester.debug(messages)
 
-    completion = client.chat.completions.create(
-        model="google/gemini-2.0-flash-thinking-exp:free",
-        messages=messages
-    )
-    print(completion.choices[0].message.content) #Shows up on console
+    # write a try block here:
+    # TODO: Test this
+    try:
+        completion = client.chat.completions.create(
+            model="google/gemini-2.0-flash-thinking-exp:free",
+            messages=messages
+        )
+        print(completion.choices[0].message.content) #Shows up on console
     # Make it show up on display now
+    except AttributeError:
+        print("Error retreiving response from openAI")
+
 
     # Append to message history
     # also have a section in the message list where it keeps track of the current
